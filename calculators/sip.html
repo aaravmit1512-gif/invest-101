@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIP calculator — Invest 101</title>
+<meta name="description" content="The ₹2,000/month story, live: see what small, consistent monthly investing grows into over the years.">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <a class="back-link" href="../index.html">&larr; Back</a>
+
+  <span class="kicker">Tool 2 of 3</span>
+  <h1>SIP calculator</h1>
+  <p class="lede">No lump sum needed. A SIP (Systematic Investment Plan) is investing a small,
+    fixed amount every month. The flat line is the money you put in; the green curve is what it
+    becomes. Try the &#8377;2,000/month story from
+    <a href="../pages/benefits-young.html">Why start young</a>.</p>
+
+  <div class="calc-layout">
+    <form class="calc-form content-card" id="calc-form" aria-label="SIP inputs">
+      <div class="field">
+        <label for="monthly">Monthly amount (&#8377;)</label>
+        <input id="monthly" type="number" inputmode="numeric" min="0" step="500" value="2000">
+        <p class="hint">What you invest every month.</p>
+      </div>
+      <div class="field">
+        <label for="rate">Expected annual return (%)</label>
+        <input id="rate" type="number" inputmode="decimal" min="0" max="50" step="0.5" value="12">
+        <p class="hint">Equity mutual funds in India have historically averaged ~10&ndash;14%
+          over long periods. Not a guarantee.</p>
+      </div>
+      <div class="field">
+        <label for="years">Years</label>
+        <input id="years" type="number" inputmode="numeric" min="1" max="60" step="1" value="10">
+      </div>
+    </form>
+
+    <div class="results">
+      <div class="stat-row" role="status" aria-live="polite">
+        <div class="stat tint-cream">
+          <div class="label">You put in</div>
+          <div class="value" id="out-invested">—</div>
+        </div>
+        <div class="stat tint-mint">
+          <div class="label">It becomes</div>
+          <div class="value" id="out-maturity">—</div>
+        </div>
+        <div class="stat tint-lavender">
+          <div class="label">Growth</div>
+          <div class="value" id="out-gains">—</div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div id="chart"></div>
+        <div class="legend">
+          <span><span class="swatch" style="background:var(--accent)"></span>Value</span>
+          <span><span class="swatch" style="background:#bbb"></span>Amount invested</span>
+        </div>
+      </div>
+
+      <div class="callout tint-pink">
+        <span class="kicker">What this teaches</span>
+        <p>You don&rsquo;t need a big amount to start &mdash; you need a <em>habit</em>. Small,
+          consistent monthly investing compounds the same way a lump sum does, and consistency
+          is the part a teenager can actually control.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../js/components.js" data-root=".."></script>
+<script type="module">
+  import { sipCalc } from "../js/calculators/sip.js";
+  import { drawLineChart, inr } from "../js/charts.js";
+
+  const $ = (id) => document.getElementById(id);
+
+  function recalc() {
+    const r = sipCalc({
+      monthly: $("monthly").value,
+      annualReturnPct: $("rate").value,
+      years: $("years").value,
+    });
+    if (!r) return;
+
+    $("out-invested").textContent = inr(r.invested);
+    $("out-maturity").textContent = inr(r.maturity);
+    $("out-gains").textContent = "+" + inr(r.gains);
+
+    drawLineChart($("chart"), {
+      ariaLabel: "SIP value versus amount invested over the years",
+      xLabel: "Years",
+      series: [
+        {
+          name: "Value",
+          color: "#46e07d",
+          points: r.series.map((p) => ({ x: p.year, y: p.value })),
+        },
+        {
+          name: "Invested",
+          color: "#bbbbbb",
+          points: r.series.map((p) => ({ x: p.year, y: p.invested })),
+        },
+      ],
+    });
+  }
+
+  document.getElementById("calc-form").addEventListener("input", recalc);
+  recalc();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "_comment": "Quiz data. 'answer' is the 0-based index of the correct option. Each question is scored equally; total = correct / N * 100.",
+  "quizzes": [
+    {
+      "id": "fundamentals",
+      "title": "Investing Fundamentals",
+      "level": "Beginner",
+      "blurb": "The vocabulary — what investing, stocks, mutual funds, budgets and goals actually are.",
+      "questions": [
+        { "q": "What is investing?", "options": ["Spending money on entertainment", "Putting money into assets that may grow in value", "Borrowing money", "Paying taxes"], "answer": 1 },
+        { "q": "Which of the following is an investment?", "options": ["Movie ticket", "Snack", "Company stock", "Mobile recharge"], "answer": 2 },
+        { "q": "What does a stock represent?", "options": ["Ownership in a company", "A bank loan", "Government debt", "Insurance"], "answer": 0 },
+        { "q": "What is a mutual fund?", "options": ["A type of bank account", "A collection of investments managed by professionals", "A government scheme", "A loan"], "answer": 1 },
+        { "q": "Ravi invests ₹10,000. After a year, it grows to ₹11,000. What was the main reason Ravi invested?", "options": ["To pay more taxes", "To grow his money over time", "To borrow money", "To reduce his salary"], "answer": 1 },
+        { "q": "What is a financial goal?", "options": ["A random purchase", "A target you want to achieve with money", "A stock price", "A bank branch"], "answer": 1 },
+        { "q": "What is a budget?", "options": ["A spending and saving plan", "A stock exchange", "An investment fund", "A type of tax"], "answer": 0 },
+        { "q": "Aryan wants to save ₹1 lakh for college in 4 years. This ₹1 lakh target is his:", "options": ["Budget", "Emergency Fund", "Financial Goal", "Dividend"], "answer": 2 },
+        { "q": "Which investment is generally considered safer?", "options": ["Penny stocks", "Cryptocurrency", "Government bonds", "Options trading"], "answer": 2 },
+        { "q": "Riya wants money for a vacation next year and retirement in 30 years. Why is it important to identify goals before investing?", "options": ["It helps choose suitable investments", "It guarantees profits", "It eliminates risk", "It avoids taxes"], "answer": 0 }
+      ]
+    },
+    {
+      "id": "risk-inflation",
+      "title": "Risk, Diversification & Inflation",
+      "level": "Intermediate",
+      "blurb": "Why prices rise, why spreading bets lowers risk, and what insurance is really for.",
+      "questions": [
+        { "q": "What is investment risk?", "options": ["Guaranteed profit", "Possibility of losing money", "Tax paid on investments", "Interest earned"], "answer": 1 },
+        { "q": "What is diversification?", "options": ["Investing in only one asset", "Spreading investments across different assets", "Selling all investments", "Avoiding investments"], "answer": 1 },
+        { "q": "Which portfolio is more diversified?", "options": ["100% in one stock", "Stocks from one company only", "Stocks, bonds, and mutual funds", "Cash only"], "answer": 2 },
+        { "q": "What is inflation?", "options": ["Increase in prices over time", "Decrease in salaries", "Increase in taxes", "Fall in stock prices"], "answer": 0 },
+        { "q": "If inflation is high, your money's purchasing power:", "options": ["Increases", "Stays the same", "Decreases", "Doubles"], "answer": 2 },
+        { "q": "Which investment usually carries the highest risk?", "options": ["Government bonds", "Savings account", "Cryptocurrency", "Fixed deposit"], "answer": 2 },
+        { "q": "Why is diversification useful?", "options": ["It eliminates all risk", "It helps reduce overall risk", "It guarantees returns", "It avoids inflation completely"], "answer": 1 },
+        { "q": "Which investor is generally willing to take more risk?", "options": ["Someone investing for 20 years", "Someone needing money next month", "Someone with no savings", "Someone avoiding investments"], "answer": 0 },
+        { "q": "What is the main purpose of insurance?", "options": ["To invest money", "To protect against financial losses", "To earn dividends", "To buy stocks"], "answer": 1 },
+        { "q": "What happens if all investments perform poorly?", "options": ["Diversification guarantees profits", "Losses can still occur", "Returns become zero automatically", "Taxes disappear"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "scenarios",
+      "title": "Scenario Challenges",
+      "level": "Applied",
+      "blurb": "Real situations — read the scenario, then pick the most accurate call.",
+      "questions": [
+        { "topic": "Diversification", "scenario": "Aarav has ₹20,000 to invest. Option A: invest all ₹20,000 in one technology company. Option B: invest ₹5,000 each in four different companies from different industries.", "q": "Which statement is most accurate?", "options": ["Option A is more diversified than Option B", "Option B is likely to have lower risk due to diversification", "Both options have exactly the same risk", "Option B guarantees higher returns"], "answer": 1 },
+        { "topic": "Inflation", "scenario": "Priya keeps ₹1,00,000 in cash for 10 years. During that period, prices of goods and services rise significantly.", "q": "What is the most likely outcome?", "options": ["Her purchasing power increases", "Her purchasing power decreases", "Her money automatically grows with inflation", "Inflation affects only investors"], "answer": 1 },
+        { "topic": "Risk vs Return", "scenario": "Rahul is choosing between Investment X (expected return 5% per year, low risk) and Investment Y (expected return 15% per year, high risk).", "q": "Which statement is generally true?", "options": ["Higher potential returns are often associated with higher risk", "Higher returns always come with lower risk", "Low-risk investments always outperform high-risk investments", "Risk has no relation to returns"], "answer": 0 },
+        { "topic": "Emergency Fund", "scenario": "Ananya has ₹50,000 saved and plans to use it for emergency medical expenses if needed.", "q": "Which option is most suitable?", "options": ["Keep it in a readily accessible account", "Invest all of it in a highly volatile stock", "Invest all of it in cryptocurrency", "Lend it to friends"], "answer": 0 },
+        { "topic": "Financial Goals", "scenario": "Rohan wants to buy a car in 6 years. He starts investing regularly toward this goal.", "q": "What is the main advantage of defining a financial goal before investing?", "options": ["It guarantees profits", "It helps choose investments that match the goal and time horizon", "It eliminates all risk", "It removes the need for a budget"], "answer": 1 },
+        { "topic": "Market Decline", "scenario": "Neha owns shares in 10 different companies. One of those companies performs poorly and its stock price falls sharply.", "q": "Why might diversification help in this situation?", "options": ["The loss in one investment may be partly offset by others", "Diversification prevents all losses", "The stock price cannot fall further", "The company will automatically recover"], "answer": 0 },
+        { "topic": "Mutual Funds", "scenario": "Kabir wants exposure to many companies but has only ₹2,000 to invest.", "q": "Why might a mutual fund be a suitable option?", "options": ["It allows instant diversification through a single investment", "It guarantees profits", "It contains only one company", "It has no risk"], "answer": 0 },
+        { "topic": "Budgeting", "scenario": "A student notices that at the end of every month they have no savings despite receiving a fixed allowance.", "q": "What is the best first step?", "options": ["Invest all future allowance immediately", "Create a budget to track income and expenses", "Borrow money regularly", "Stop saving entirely"], "answer": 1 },
+        { "topic": "Long-Term Investing", "scenario": "Two investors each invest ₹10,000. Investor A withdraws after 1 year. Investor B leaves the investment untouched for 15 years (assume positive average growth).", "q": "Who is more likely to benefit from compounding?", "options": ["Investor A", "Investor B", "Both equally", "Neither"], "answer": 1 },
+        { "topic": "Choosing an Investment", "scenario": "An investor wants moderate growth but is uncomfortable with large fluctuations in value.", "q": "Which choice is generally more suitable?", "options": ["Investing everything in one small startup", "A diversified portfolio of different asset types", "Daily speculative trading", "Investing based on social media tips"], "answer": 1 },
+        { "topic": "Diversification under stress", "scenario": "Two investors each have ₹1,00,000. Investor A puts all the money into one stock. Investor B invests in a diversified portfolio. The stock market falls by 20%, but one company collapses completely.", "q": "Who is likely to suffer the larger loss?", "options": ["Investor A", "Investor B", "Both equally", "Cannot be determined"], "answer": 0 }
+      ]
+    }
+  ]
+}

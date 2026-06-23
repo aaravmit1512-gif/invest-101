@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test yourself — Invest 101</title>
+<meta name="description" content="Three short multiple-choice quizzes — fundamentals, risk &amp; diversification, and real-world scenarios. Instant score out of 100. Educational only.">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <a class="back-link" href="../index.html">&larr; Back</a>
+
+  <div class="content-card tint-mint tinted">
+    <span class="kicker">After the calculators &middot; test yourself</span>
+    <h1>Test yourself</h1>
+    <p class="lede">You&rsquo;ve read the topics and played with the calculators &mdash; now check what
+      stuck. Pick a quiz, answer all the questions, and submit for a score out of 100. Nothing is saved
+      and there&rsquo;s no time limit; retry as many times as you like.</p>
+  </div>
+
+  <!-- Quiz chooser (shown first) -->
+  <section id="quiz-chooser">
+    <h2 id="quiz-chooser-heading" tabindex="-1">Pick a quiz</h2>
+    <div class="card-grid" id="quiz-cards"><!-- filled by script --></div>
+  </section>
+
+  <!-- A single quiz (shown after a choice) -->
+  <section id="quiz-view" hidden>
+    <button type="button" class="back-link" id="quiz-back">&larr; All quizzes</button>
+    <div class="content-card tinted" id="quiz-head">
+      <span class="kicker" id="quiz-level">Quiz</span>
+      <h2 id="quiz-title" tabindex="-1" style="margin-bottom:0.2em">&mdash;</h2>
+      <p id="quiz-blurb" style="margin:0"></p>
+    </div>
+    <div class="content-card" style="margin-top:22px" id="quiz-mount"><!-- mountQuiz renders here --></div>
+  </section>
+
+</main>
+<script src="../js/components.js" data-root=".."></script>
+<script type="module">
+  import { mountQuiz } from "../js/quiz.js";
+
+  const tints = ["tint-mint", "tint-sky", "tint-peach", "tint-lavender", "tint-pink", "tint-cream"];
+  const cards = document.getElementById("quiz-cards");
+  const chooser = document.getElementById("quiz-chooser");
+  const view = document.getElementById("quiz-view");
+  const mount = document.getElementById("quiz-mount");
+  const titleEl = document.getElementById("quiz-title");
+  const blurbEl = document.getElementById("quiz-blurb");
+  const levelEl = document.getElementById("quiz-level");
+  const backBtn = document.getElementById("quiz-back");
+
+  function showChooser() {
+    view.hidden = true;
+    chooser.hidden = false;
+    mount.innerHTML = "";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById("quiz-chooser-heading").focus();  // move focus off the now-hidden view
+  }
+
+  function openQuiz(quiz) {
+    titleEl.textContent = quiz.title;
+    blurbEl.textContent = quiz.blurb || "";
+    levelEl.textContent = quiz.level + " · " + quiz.questions.length + " questions · scored out of 100";
+    chooser.hidden = true;
+    view.hidden = false;
+    mountQuiz(mount, quiz);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    titleEl.focus();  // move focus into the new view (it was on a now-hidden chooser card)
+  }
+
+  backBtn.addEventListener("click", showChooser);
+
+  try {
+    const res = await fetch("../data/quizzes.json");
+    const quizzes = (await res.json()).quizzes;
+    cards.innerHTML = "";
+    quizzes.forEach((quiz, i) => {
+      const a = document.createElement("a");
+      a.href = "#";
+      a.className = "topic-card " + tints[i % tints.length];
+      a.innerHTML =
+        '<span class="num">' + quiz.level + "</span>" +
+        "<h3>" + quiz.title + "</h3>" +
+        "<p>" + (quiz.blurb || "") + "</p>" +
+        '<span class="go">' + quiz.questions.length + " questions &rarr;</span>";
+      a.addEventListener("click", (e) => { e.preventDefault(); openQuiz(quiz); });
+      cards.appendChild(a);
+    });
+  } catch (e) {
+    cards.innerHTML = "<p>Couldn&rsquo;t load the quizzes. If you opened this file directly from disk, " +
+      "serve the folder instead: <code>python3 -m http.server</code></p>";
+  }
+</script>
+</body>
+</html>

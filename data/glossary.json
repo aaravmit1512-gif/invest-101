@@ -1,0 +1,25 @@
+{
+  "_comment": "Term -> short definition; condensed for quick reference. Full prose lives on basic-terms.html.",
+  "terms": [
+    { "term": "Asset", "def": "Anything that holds economic value and can be owned to produce a benefit — cash, stocks, bonds, mutual funds, real estate." },
+    { "term": "Stock", "def": "Ownership in a company. Buying a stock means owning a small part of the company's assets and earnings." },
+    { "term": "Stock market", "def": "A system for the organized buying and selling of stocks on stock exchanges." },
+    { "term": "Capital gain", "def": "The profit from selling an asset for more than its purchase price." },
+    { "term": "Capital loss", "def": "Selling an asset for less than you paid. Losses can offset gains, reducing your tax burden." },
+    { "term": "Returns", "def": "The net combination of all capital losses and gains." },
+    { "term": "Portfolio", "def": "The collection of investments held by a person or institution; diversified portfolios mix asset classes to manage risk." },
+    { "term": "Diversification", "def": "Spreading investments across different assets and sectors so no single risk can sink you." },
+    { "term": "Compounding", "def": "Earning returns on both your original investment and the returns it already produced. Growth accelerates over time." },
+    { "term": "Appreciation", "def": "An investment gaining value between when you buy it and when you sell it." },
+    { "term": "Demat account", "def": "The account that holds your shares electronically in India. Minors can have one operated by a guardian." },
+    { "term": "SIP", "def": "Systematic Investment Plan — investing a fixed amount every month instead of one lump sum." },
+    { "term": "CAGR", "def": "Compound Annual Growth Rate — your total return converted into a per-year rate so different investments can be compared." },
+    { "term": "STCG", "def": "Short Term Capital Gains — profit on assets held a short time; taxed at 20% (Budget 2024)." },
+    { "term": "LTCG", "def": "Long Term Capital Gains — profit on assets held longer; taxed at 12.5% above ₹1.25 lakh (Budget 2024)." },
+    { "term": "Unrealized gain", "def": "Your asset went up but you haven't sold — no tax is due until you sell." },
+    { "term": "Paper trading", "def": "Practising investing with fake money on a simulator before risking real money." },
+    { "term": "Guardian account", "def": "An investment account for a minor, managed by a parent/guardian; the minor owns the investments." },
+    { "term": "PAN", "def": "Permanent Account Number — the tax ID needed (via your guardian, if you're a minor) to invest in India." },
+    { "term": "Inflation", "def": "Rising cost of living. If returns are 5% and inflation is 3%, your real return is only 2%." }
+  ]
+}

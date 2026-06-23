@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Returns &amp; CAGR calculator — Invest 101</title>
+<meta name="description" content="Measure what an investment actually earned: absolute return, percentage return and CAGR — the per-year number that makes investments comparable.">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <a class="back-link" href="../index.html">&larr; Back</a>
+
+  <span class="kicker">Tool 3 of 3</span>
+  <h1>Returns &amp; CAGR calculator</h1>
+  <p class="lede">The other two tools look forward; this one looks <em>backward</em>. You bought
+    something, you sold it &mdash; how good was that, really? &ldquo;I made &#8377;5,000&rdquo;
+    means nothing until you know on how much, and over how long.</p>
+
+  <div class="calc-layout">
+    <form class="calc-form content-card" id="calc-form" aria-label="Returns inputs">
+      <div class="field">
+        <label for="buy">Bought for (&#8377;)</label>
+        <input id="buy" type="number" inputmode="numeric" min="1" step="500" value="10000">
+      </div>
+      <div class="field">
+        <label for="sell">Sold for (&#8377;)</label>
+        <input id="sell" type="number" inputmode="numeric" min="0" step="500" value="15000">
+      </div>
+      <div class="field">
+        <label for="years">Years held</label>
+        <input id="years" type="number" inputmode="decimal" min="0.1" max="60" step="0.5" value="3">
+      </div>
+    </form>
+
+    <div class="results">
+      <div class="stat-row" role="status" aria-live="polite">
+        <div class="stat tint-cream">
+          <div class="label">Absolute return</div>
+          <div class="value" id="out-absolute">—</div>
+        </div>
+        <div class="stat tint-peach">
+          <div class="label">Total return</div>
+          <div class="value" id="out-pct">—</div>
+        </div>
+        <div class="stat tint-mint">
+          <div class="label">CAGR (per year)</div>
+          <div class="value" id="out-cagr">—</div>
+        </div>
+      </div>
+
+      <div class="callout" id="verdict" aria-live="polite">
+        <span class="kicker">In plain words</span>
+        <p id="verdict-text">&mdash;</p>
+      </div>
+
+      <div class="callout tint-lavender">
+        <span class="kicker">What this teaches</span>
+        <p>Total return and <em>annualised</em> return are different animals: 50% over 3 years
+          is ~14.5% a year, not 16.7%. CAGR is the honest number &mdash; and it&rsquo;s also how
+          <a href="../pages/taxes.html">holding period</a> decides what tax you pay.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../js/components.js" data-root=".."></script>
+<script type="module">
+  import { returnsCalc } from "../js/calculators/returns.js";
+  import { inr } from "../js/charts.js";
+
+  const $ = (id) => document.getElementById(id);
+
+  function recalc() {
+    const r = returnsCalc({
+      buyValue: $("buy").value,
+      sellValue: $("sell").value,
+      years: $("years").value,
+    });
+    if (!r) return;
+
+    $("out-absolute").textContent = (r.absolute >= 0 ? "+" : "−") + inr(Math.abs(r.absolute));
+    $("out-pct").textContent = r.pct.toFixed(1) + "%";
+    $("out-cagr").textContent = r.cagrPct.toFixed(2) + "%";
+
+    const verdict = $("verdict");
+    verdict.classList.toggle("tint-mint", r.isGain);
+    verdict.classList.toggle("tint-pink", !r.isGain);
+    $("verdict-text").textContent = r.isGain
+      ? "Your money grew " + r.pct.toFixed(1) + "% in total — equivalent to earning " +
+        r.cagrPct.toFixed(2) + "% every year. Compare that to a savings account (~3–4%) or " +
+        "inflation (~5–6%) to judge if it was worth the risk."
+      : "This investment lost " + Math.abs(r.pct).toFixed(1) + "% in total (" +
+        r.cagrPct.toFixed(2) + "% per year). Losses happen — see Risks of Investing for the " +
+        "five usual reasons.";
+  }
+
+  document.getElementById("calc-form").addEventListener("input", recalc);
+  recalc();
+</script>
+</body>
+</html>
